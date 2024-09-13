@@ -4,6 +4,8 @@ public class Parsing
 {
   public static int ParseInt(int min, int max)
   {
+
+    Console.Write("=>");
     int ans = 1;
     bool valid = false;
     bool minmax = false;
@@ -34,6 +36,7 @@ public class Parsing
         }
       }
     }
+    Console.WriteLine();
     return ans;
   }
 }

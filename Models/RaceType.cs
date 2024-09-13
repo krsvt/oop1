@@ -8,5 +8,8 @@ public enum RaceType
   AIR,
 
   [Description("Наземный")]
-  GROUND
+  GROUND,
+
+  [Description("Все")]
+  ALL
 }

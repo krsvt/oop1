@@ -3,7 +3,9 @@ public class GroundedTransport : Transport
     // restFormula = stayNumber => 5
     // restFormula = stayNumber => stayNumber * 2
     // etc
-    protected GroundedTransport(string name, int speed, int moveTimeSecUntilNextStop, Func<int, int> restFormula) : base(name, speed)
+    public GroundedTransport
+        (string name, int speed, int moveTimeSecUntilNextStop, Func<int, int> restFormula)
+        : base(name, speed, Models.RaceType.GROUND)
     {
         this.MoveTimeSecUntilNextStop = moveTimeSecUntilNextStop;
         this.RestFormula = restFormula;
@@ -18,18 +20,29 @@ public class GroundedTransport : Transport
     public int RestingTime { get; private set; }
     public int StayNumber { get; private set; }
 
+
+    public override string ToString()
+    {
+        return $"🛞 Имя: {Name}, Начальная Скорость: {Speed}, Остановок: {StayNumber}, Всего: {Mileage}";
+    }
+
     public override void move()
     {
         this.MovingTime++;
-        if (this.Resting) {
+        if (this.Resting)
+        {
             this.RestingTime--;
-            if (this.RestingTime == 0) {
+            if (this.RestingTime == 0)
+            {
                 this.Resting = false;
             }
-        } else {
+        }
+        else
+        {
             this.Mileage += Speed;
             // time to stop
-            if (MovingTime % MoveTimeSecUntilNextStop == 0) {
+            if (MovingTime % MoveTimeSecUntilNextStop == 0)
+            {
                 this.StayNumber++;
                 this.Resting = true;
                 this.RestingTime = this.RestFormula(this.StayNumber);
